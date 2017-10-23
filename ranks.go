@@ -21,6 +21,7 @@ const (
 	Joker
 )
 
+// RankNames maps a rank to its string name
 var RankNames = map[Rank]string{
 	Two:   "Two",
 	Three: "Three",
@@ -38,8 +39,10 @@ var RankNames = map[Rank]string{
 	Joker: "Joker",
 }
 
+// A RankComparator is a function that compares ranks
 type RankComparator func(Rank, Rank) int
 
+// DefaultRankComparator compares by value
 func DefaultRankComparator(a, b Rank) int {
 	switch {
 	case a < b:

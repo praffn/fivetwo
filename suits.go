@@ -1,5 +1,6 @@
 package fivetwo
 
+// Suit is the cards suit (sometimes refered to as colour)
 type Suit uint8
 
 // Suits
@@ -10,6 +11,7 @@ const (
 	Spades
 )
 
+// SuitNames maps a suit to its string name
 var SuitNames = map[Suit]string{
 	Clubs:    "Clubs",
 	Diamonds: "Diamonds",
@@ -17,8 +19,10 @@ var SuitNames = map[Suit]string{
 	Spades:   "Spades",
 }
 
+// A SuitComparator is a function that compares suits
 type SuitComparator func(Suit, Suit) int
 
+// DefaultSuitComparator compares by value
 func DefaultSuitComparator(a, b Suit) int {
 	switch {
 	case a < b:
