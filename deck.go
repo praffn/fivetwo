@@ -120,3 +120,13 @@ func (d *Deck) Add(c Card) {
 func (d *Deck) AddFront(c Card) {
 	*d = append([]Card{c}, *d...)
 }
+
+// Empty returns true if deck is empty, otherwise false
+func (d Deck) Empty() bool {
+	return len(d) == 0
+}
+
+// Len returns the length of the deck (amount of cards)
+func (d Deck) Len() int {
+	return len(d)
+}
