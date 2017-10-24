@@ -64,6 +64,9 @@ func TestDrawReturnsCard(t *testing.T) {
 		t.Errorf("Expected %v got %v", needle, card)
 		return
 	}
+	if len(deck) != 1 {
+		t.Errorf("Expected length of 1, got %d", len(deck))
+	}
 }
 
 func TestDrawErrors(t *testing.T) {
@@ -89,6 +92,9 @@ func TestDrawBackReturnsCard(t *testing.T) {
 	if card != needle {
 		t.Errorf("Expected %v got %v", needle, card)
 		return
+	}
+	if len(deck) != 1 {
+		t.Errorf("Expected length of 1, got %d", len(deck))
 	}
 }
 

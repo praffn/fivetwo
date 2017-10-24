@@ -67,23 +67,23 @@ func (d Deck) Shuffle() {
 
 // Draw removes the card from the front of the deck and returns it
 // An error will be returned if the deck is empty
-func (d Deck) Draw() (c Card, err error) {
-	if len(d) == 0 {
+func (d *Deck) Draw() (c Card, err error) {
+	if len(*d) == 0 {
 		err = errors.New("Deck is empty")
 	} else {
-		c, d = d[0], d[1:]
+		c, *d = (*d)[0], (*d)[1:]
 	}
 	return
 }
 
 // DrawBack removes the card from the back of the deck and returns it.
 // An error will be returned if the deck is empty
-func (d Deck) DrawBack() (c Card, err error) {
-	l := len(d)
+func (d *Deck) DrawBack() (c Card, err error) {
+	l := len(*d)
 	if l == 0 {
 		err = errors.New("Deck is empty")
 	} else {
-		c, d = d[l-1], d[:l-1]
+		c, *d = (*d)[l-1], (*d)[:l-1]
 	}
 	return
 }
