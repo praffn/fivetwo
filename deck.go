@@ -2,6 +2,7 @@ package fivetwo
 
 import (
 	"bytes"
+	"errors"
 	"io"
 	"math/rand"
 )
@@ -62,4 +63,60 @@ func (d Deck) Shuffle() {
 		j := rand.Intn(i + 1)
 		d[i], d[j] = d[j], d[i]
 	}
+}
+
+// Draw removes the card from the front of the deck and returns it
+// An error will be returned if the deck is empty
+func (d Deck) Draw() (c Card, err error) {
+	if len(d) == 0 {
+		err = errors.New("Deck is empty")
+	} else {
+		c, d = d[0], d[1:]
+	}
+	return
+}
+
+// DrawBack removes the card from the back of the deck and returns it.
+// An error will be returned if the deck is empty
+func (d Deck) DrawBack() (c Card, err error) {
+	l := len(d)
+	if l == 0 {
+		err = errors.New("Deck is empty")
+	} else {
+		c, d = d[l-1], d[:l-1]
+	}
+	return
+}
+
+// Peek returns the card at the front of the deck without removing it
+// An error will be returned if the deck is empty
+func (d Deck) Peek() (c Card, err error) {
+	if len(d) == 0 {
+		err = errors.New("Deck is empty")
+	} else {
+		c = d[0]
+	}
+	return
+}
+
+// PeekBack returns the card at the back of the deck
+// An error will be returned if the deck is empty
+func (d Deck) PeekBack() (c Card, err error) {
+	l := len(d)
+	if l == 0 {
+		err = errors.New("Deck is empty")
+	} else {
+		c = d[l-1]
+	}
+	return
+}
+
+// Add adds a card to the back of the deck
+func (d *Deck) Add(c Card) {
+	*d = append(*d, c)
+}
+
+// AddFront adds a card to the front of the deck
+func (d *Deck) AddFront(c Card) {
+	*d = append([]Card{c}, *d...)
 }
